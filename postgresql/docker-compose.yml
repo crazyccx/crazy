@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_dc
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: optimus_prime #在此填写postgres的用户名
+      POSTGRES_DB: optimus_prime_dev #在此填写postgres的数据库名，默认是postgres
+      POSTGRES_PASSWORD: admin@123 #在此填写posgres的数据库密码
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_dc
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ccxff88@163.com
+      PGADMIN_DEFAULT_PASSWORD: 8iJ+g9
+    ports:
+      - "5050:80"
+volumes:
+  pgdata: /usr/local/docker/postgresql/data
