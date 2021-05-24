@@ -1,0 +1,31 @@
+version: '3.4'
+
+
+
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - 9011:9000
+    volumes:
+      - /usr/local/docker/minio/data:/data
+    environment:
+      MINIO_ACCESS_KEY: "minioadmin"
+      MINIO_SECRET_KEY: "5rnY7RDE3GJBTb"
+    command: server /data
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+  optimus-prime:
+    build:
+      context: ./trade-provider
+    restart: always
+    container_name: optimus-prime
+    image: optimus-prime
+    ports:
+      - 8888:8888
+    environment:
+      - TZ=Asia/Shanghai
