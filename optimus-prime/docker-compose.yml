@@ -19,13 +19,3 @@ services:
       driver: "json-file"
       options:
         max-size: "1m"
-  optimus-prime:
-    build:
-      context: ./trade-provider
-    restart: always
-    container_name: optimus-prime
-    image: optimus-prime
-    ports:
-      - 8888:8888
-    environment:
-      - TZ=Asia/Shanghai
